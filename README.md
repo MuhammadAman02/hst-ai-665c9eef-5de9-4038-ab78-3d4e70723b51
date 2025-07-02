@@ -1,238 +1,276 @@
-# HST AI Python Engineer Project Base (2025 Edition)
+# HP Ecommerce Store
 
-A modern, production-ready foundation for building Python web applications with best practices for 2025. This project base is designed to work seamlessly with the HST AI Python Engineer prompt.
+A complete ecommerce platform for HP products built with NiceGUI, FastAPI, and SQLAlchemy.
 
 ## Features
 
-- **Framework Flexibility**: Support for multiple UI frameworks (NiceGUI, FastAPI+Jinja2, ReactPy)
-- **UI-First Development**: Prioritizes creating responsive, modern UIs before complex backend features
-- **SQLAlchemy V2 Ready**: Updated database patterns using SQLAlchemy 2.0
-- **Pydantic V2 Compatible**: Uses the latest Pydantic patterns for data validation
-- **Docker Support**: Production-ready containerization with a multi-stage Dockerfile
-- **Fly.io Optimized**: Includes a `fly.toml` for easy deployment with auto-scaling
-- **Version Compatibility**: Carefully selected dependency versions to ensure stability
-- **Environment Configuration**: Uses `.env` files with pydantic-settings for type-safe configuration
+### 🛍️ Core Ecommerce Features
+- **Product Catalog**: Browse HP laptops, desktops, printers, and accessories
+- **Category Navigation**: Organized product categories with filtering
+- **Product Search**: Search products by name, description, or specifications
+- **Shopping Cart**: Add/remove items, update quantities, persistent cart
+- **User Authentication**: Secure user registration and login
+- **Order Management**: Complete checkout process with order tracking
+- **Inventory Management**: Real-time stock tracking and updates
+
+### 🎨 User Interface
+- **Modern Design**: Clean, responsive UI with HP branding
+- **Product Cards**: Attractive product displays with images and details
+- **Interactive Cart**: Real-time cart updates and item management
+- **Mobile Responsive**: Optimized for desktop and mobile devices
+- **Intuitive Navigation**: Easy-to-use category browsing and search
+
+### 🔧 Technical Features
+- **NiceGUI Frontend**: Modern Python-based UI framework
+- **FastAPI Backend**: High-performance API with automatic documentation
+- **SQLAlchemy V2**: Modern ORM with type hints and relationships
+- **Pydantic V2**: Data validation and serialization
+- **JWT Authentication**: Secure token-based authentication
+- **SQLite Database**: Lightweight database for development
+
+## Quick Start
+
+### Prerequisites
+- Python 3.9 or higher
+- pip (Python package installer)
+
+### Installation
+
+1. **Clone or create the project directory**:
+```bash
+mkdir hp-ecommerce-store
+cd hp-ecommerce-store
+```
+
+2. **Create a virtual environment**:
+```bash
+python -m venv venv
+
+# Activate virtual environment
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+```
+
+3. **Install dependencies**:
+```bash
+pip install -r requirements.txt
+```
+
+4. **Set up environment variables**:
+```bash
+cp .env.example .env
+# Edit .env file with your configuration
+```
+
+5. **Run the application**:
+```bash
+python main.py
+```
+
+6. **Open your browser** and navigate to:
+   - **Store**: http://127.0.0.1:8080
+   - **API Documentation**: http://127.0.0.1:8080/docs
+
+## Default Credentials
+
+The application creates a default admin user:
+- **Email**: admin@hpstore.com
+- **Password**: admin123
 
 ## Project Structure
 
 ```
-project_base/
+hp-ecommerce-store/
 ├── app/
-│   ├── __init__.py
-│   ├── api/            # API endpoints (e.g., FastAPI routers)
+│   ├── main.py                 # Main NiceGUI application
+│   ├── core/                   # Core configuration and utilities
+│   │   ├── config.py          # Application settings
+│   │   ├── database.py        # Database configuration
+│   │   ├── logging.py         # Logging setup
+│   │   └── sample_data.py     # Sample product data
+│   ├── models/                 # SQLAlchemy models
+│   │   ├── user.py            # User model
+│   │   ├── product.py         # Product and Category models
+│   │   ├── cart.py            # Shopping cart models
+│   │   └── order.py           # Order models
+│   ├── services/               # Business logic layer
+│   │   ├── auth_service.py    # Authentication service
+│   │   ├── product_service.py # Product management
+│   │   ├── cart_service.py    # Cart operations
+│   │   └── order_service.py   # Order processing
+│   ├── api/                    # FastAPI endpoints
+│   │   ├── router.py          # API router configuration
 │   │   └── __init__.py
-│   ├── core/           # Core configuration, settings, error handling, logging
-│   │   └── __init__.py
-│   ├── frontend/       # UI implementations (e.g., NiceGUI pages, ReactPy components, FastAPI routes)
-│   │   ├── __init__.py
-│   │   # ├── nicegui_app.py  # Example: NiceGUI implementation
-│   │   # ├── reactpy_app.py  # Example: ReactPy implementation
-│   │   # └── routes.py       # Example: FastAPI frontend routes
-│   ├── generated/      # AI-generated application code
-│   │   └── __init__.py
-│   ├── models/         # Data models & schemas (e.g., Pydantic, SQLAlchemy)
-│   │   └── __init__.py
-│   ├── services/       # Business logic & external API integrations
-│   │   └── __init__.py
-│   ├── static/         # Static assets (CSS, JS, images). ALL image files MUST be placed here or in subdirectories within static/. Do NOT create separate top-level image directories like 'pictures/'.
-│   ├── templates/      # HTML templates (Jinja2)
-│   └── main.py         # Defines FastAPI routes and application logic for the 'app' module
-├── .dockerignore         # Specifies intentionally untracked files for Docker
-├── .env                  # Environment variables (create this file based on .env.example if provided)
-├── Dockerfile            # Container configuration
-├── fly.toml              # fly.io deployment configuration
-├── main.py               # Application entry point (runs the Uvicorn server)
-├── README.md             # This file
-└── requirements.txt      # Python dependencies
+│   └── static/                 # Static assets
+│       ├── css/styles.css     # Custom styles
+│       └── images/            # Product images
+├── data/                       # Database files
+├── logs/                       # Application logs
+├── main.py                     # Application entry point
+├── requirements.txt            # Python dependencies
+├── .env.example               # Environment variables template
+└── README.md                  # This file
 ```
 
-## Getting Started
+## Sample Products
 
-### Prerequisites
+The application includes sample HP products:
 
-- Python 3.8+
-- Docker (optional, for containerized deployment)
-- Fly.io account and `flyctl` CLI (optional, for Fly.io deployment)
+### Laptops
+- HP Pavilion 15.6" Laptop - $699.99
+- HP Envy x360 13.3" 2-in-1 Laptop - $899.99
+- HP Omen 16.1" Gaming Laptop - $1,299.99
+- HP EliteBook 14" Business Laptop - $1,199.99
 
-### Installation
+### Desktops
+- HP Pavilion Desktop - $549.99
+- HP Omen 45L Gaming Desktop - $1,599.99
+- HP EliteDesk 800 G8 Mini - $899.99
 
-#### Dependency Compatibility
+### Printers
+- HP OfficeJet Pro 9015e All-in-One - $199.99
+- HP LaserJet Pro M404n - $179.99
+- HP Envy 6055e Wireless All-in-One - $99.99
 
-**Important Note**: This project has specific version requirements to ensure compatibility:
-
-- **NiceGUI 1.4.21-1.4.24** requires **FastAPI >=0.109.1,<0.110.0**
-- If you need to use a newer FastAPI version (>=0.115.0), you'll need to upgrade to NiceGUI 2.0+ when available
-
-The requirements.txt file has been configured with compatible versions. Do not modify these version constraints unless you're prepared to resolve dependency conflicts.
-
-#### Automatic Setup (Recommended)
-
-1. Clone the repository
-2. Run the appropriate setup script for your operating system:
-
-   **Windows:**
-   ```
-   setup_and_run.bat
-   ```
-
-   **Unix/MacOS:**
-   ```
-   chmod +x setup_and_run.sh
-   ./setup_and_run.sh
-   ```
-
-   **Alternative (All platforms):**
-   ```
-   python setup.py
-   ```
-
-   These scripts will:
-   - Check your Python version
-   - Create a virtual environment
-   - Install all dependencies
-   - Verify critical dependencies
-   - Provide activation instructions
-   - Optionally run the application
-
-#### Manual Setup
-
-1. Clone the repository
-2. Create a virtual environment:
-   ```
-   python -m venv venv
-   ```
-3. Activate the virtual environment:
-   - Windows:
-     ```
-     venv\Scripts\activate
-     ```
-   - Unix/MacOS:
-     ```
-     source venv/bin/activate
-     ```
-4. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-5. Verify installation:
-   ```
-   python -c "import uvicorn, fastapi, nicegui; print('Dependencies successfully installed!')"
-   ```
-
-#### Troubleshooting
-
-##### "uvicorn: command not found" Error
-
-If you encounter this error when running the application, it means the `uvicorn` command is not in your PATH. This typically happens when:
-
-1. The virtual environment is not activated
-2. The `uvicorn` package was not installed correctly
-
-**Solution:**
-
-1. Ensure your virtual environment is activated:
-   - Windows: `venv\Scripts\activate`
-   - Unix/MacOS: `source venv/bin/activate`
-
-2. Reinstall the dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. Run the application using the Python module syntax instead of the command:
-   ```
-   python -m uvicorn main:app --reload
-   ```
-
-4. **Create a `.env` file** in the `project_base` directory (you can copy `.env.example` if one exists and modify it). At a minimum, it might look like this if you want to change the default port:
-   ```env
-   PORT=8000
-   HOST=0.0.0.0
-   ```
-   If no `.env` file is present, the application will use default values (e.g., port 8000).
-
-### Running the Application Locally
-
-#### Method 1: Using main.py (Recommended)
-
-1. **Ensure your virtual environment is activated:**
-   - Windows: `venv\Scripts\activate`
-   - Unix/MacOS: `source venv/bin/activate`
-
-2. **Start the application:**
-   ```bash
-   python main.py
-   ```
-
-#### Method 2: Using uvicorn directly
-
-1. **Ensure your virtual environment is activated:**
-   - Windows: `venv\Scripts\activate`
-   - Unix/MacOS: `source venv/bin/activate`
-
-2. **Start the application using the uvicorn command:**
-   ```bash
-   uvicorn main:app --reload
-   ```
-
-   If you encounter a "uvicorn: command not found" error, use the Python module syntax instead:
-   ```bash
-   python -m uvicorn main:app --reload
-   ```
-
-#### Accessing the Application
-
-- Open your browser and navigate to `http://localhost:8000` (or the port you specified in the `.env` file)
-- The NiceGUI UI will be available at `http://localhost:8000/ui`
+### Accessories
+- HP 24" FHD Monitor - $149.99
+- HP Wireless Mouse - $29.99
+- HP USB-C Dock - $199.99
+- HP Mechanical Gaming Keyboard - $89.99
 
 ## API Endpoints
 
--   `GET /`: Returns a welcome message.
--   `GET /health`: Returns a health status, useful for monitoring.
+The application provides a RESTful API:
+
+- `GET /api/health` - Health check
+- `GET /api/products` - List products
+- `GET /api/products/{id}` - Get product details
+- `GET /api/categories` - List categories
+- `POST /api/cart/add` - Add item to cart
+- `GET /api/cart` - Get cart contents
+- `POST /api/orders` - Create order
+- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - User registration
+
+## Configuration
+
+### Environment Variables
+
+Key configuration options in `.env`:
+
+```env
+# Application
+APP_NAME=HP Ecommerce Store
+DEBUG=True
+HOST=127.0.0.1
+PORT=8080
+
+# Database
+DATABASE_URL=sqlite:///./data/hp_store.db
+
+# Security
+SECRET_KEY=your-secret-key-here
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+# Logging
+LOG_LEVEL=INFO
+```
+
+### Database
+
+The application uses SQLite by default for easy setup. For production, you can configure PostgreSQL or MySQL by updating the `DATABASE_URL`.
+
+## Development
+
+### Adding New Products
+
+Products are managed through the `ProductService` class. You can:
+
+1. Add products programmatically in `sample_data.py`
+2. Use the admin interface (future feature)
+3. Import from CSV/JSON files (future feature)
+
+### Customizing the UI
+
+The UI is built with NiceGUI and can be customized by:
+
+1. Modifying the page functions in `app/main.py`
+2. Updating CSS styles in `app/static/css/styles.css`
+3. Adding new components and layouts
+
+### Extending the API
+
+Add new API endpoints by:
+
+1. Creating new routers in `app/api/`
+2. Adding business logic in `app/services/`
+3. Including routers in the main application
 
 ## Deployment
 
+### Production Considerations
+
+1. **Environment Variables**: Set production values in `.env`
+2. **Database**: Use PostgreSQL or MySQL for production
+3. **Security**: Change default secret keys and passwords
+4. **HTTPS**: Configure SSL/TLS certificates
+5. **Static Files**: Use a CDN for static assets
+6. **Monitoring**: Set up logging and monitoring
+
 ### Docker Deployment
 
-1.  **Build the Docker image:**
-    ```bash
-    docker build -t my-fastapi-app .
-    ```
-2.  **Run the Docker container:**
-    ```bash
-    docker run -p 8000:8000 -d my-fastapi-app
-    ```
-    Replace `8000:8000` with `<host_port>:<container_port>` if you need to map to a different host port. The container port is determined by the `PORT` environment variable set in the `Dockerfile` or `fly.toml` (defaulting to 8000).
+```dockerfile
+FROM python:3.11-slim
 
-### Fly.io Deployment
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-1.  **Install `flyctl`**: Follow the instructions at [fly.io/docs/hands-on/install-flyctl/](https://fly.io/docs/hands-on/install-flyctl/).
-2.  **Login to Fly.io**: `fly auth login`
-3.  **Launch the app (first time only)**:
-    ```bash
-    fly launch --name your-unique-app-name --region sin
-    ```
-    (Replace `your-unique-app-name` and `sin` (Singapore) with your desired app name and region. This will also create a `fly.toml` if one doesn't exist, or update the existing one.)
-4.  **Deploy changes**:
-    ```bash
-    fly deploy
-    ```
+COPY . .
+EXPOSE 8080
 
-The `fly.toml` file is pre-configured for auto-scaling and to stop machines when idle to save costs.
+CMD ["python", "main.py"]
+```
 
-## Customization
+## Troubleshooting
 
--   **Add new API endpoints**: Modify `project_base/app/main.py` to include new routes and logic.
--   **Modify dependencies**: Update `project_base/requirements.txt` and reinstall.
--   **Adjust Docker configuration**: Edit `project_base/Dockerfile`.
--   **Change deployment settings**: Update `project_base/fly.toml` for Fly.io.
+### Common Issues
 
-## Core Principles for Development
+1. **Import Errors**: Ensure virtual environment is activated
+2. **Database Errors**: Check database file permissions
+3. **Port Conflicts**: Change PORT in `.env` if 8080 is in use
+4. **Module Not Found**: Run `pip install -r requirements.txt`
 
-While this base is minimal, consider these principles as you expand your application:
+### Logging
 
--   **Modularity**: Keep code organized into logical modules.
--   **Clarity**: Write clear, understandable code with type hints where appropriate.
--   **Testing**: Implement unit and integration tests for new features.
--   **Security**: Follow security best practices (input validation, authentication if needed, etc.).
--   **Documentation**: Keep this README and code comments up-to-date.
+Application logs are available in:
+- Console output (when running)
+- `logs/app.log` file
+
+Set `LOG_LEVEL=DEBUG` in `.env` for detailed logging.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Support
+
+For support and questions:
+- Check the logs for error messages
+- Review the API documentation at `/docs`
+- Ensure all dependencies are installed correctly
+- Verify environment configuration
+
+---
+
+**HP Ecommerce Store** - A modern, full-featured ecommerce platform built with Python.
