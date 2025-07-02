@@ -1,12 +1,15 @@
+"""Logging configuration for the application"""
+
 import logging
 import os
 import sys
 from logging.handlers import RotatingFileHandler
-from typing import Optional, Dict, Any
+from pathlib import Path
+from typing import Dict, Any
 
-# CRITICAL: Always define __all__ at the top of the module to explicitly declare exports
-# This prevents ImportError when other modules try to import specific functions
-__all__ = ["app_logger", "get_logger", "log_structured"]
+# Ensure logs directory exists
+logs_dir = Path("logs")
+logs_dir.mkdir(exist_ok=True)
 
 # Configure the root logger
 logging.basicConfig(
@@ -15,96 +18,57 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-# Create a logger for the application
+# Create application logger
 app_logger = logging.getLogger("app")
-
-# Set the default level
 app_logger.setLevel(logging.INFO)
 
-# Create a formatter
+# Create formatter
 formatter = logging.Formatter(
     "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-# Create a console handler
+# Console handler
 console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setFormatter(formatter)
 app_logger.addHandler(console_handler)
 
-# Create a file handler if LOG_FILE is set in environment
-log_file = os.getenv("LOG_FILE")
-if log_file:
-    # Create logs directory if it doesn't exist
-    log_dir = os.path.dirname(log_file)
-    if log_dir and not os.path.exists(log_dir):
-        os.makedirs(log_dir)
-    
-    # Create a rotating file handler (10 MB max size, keep 5 backup files)
+# File handler
+try:
     file_handler = RotatingFileHandler(
-        log_file,
+        "logs/app.log",
         maxBytes=10 * 1024 * 1024,  # 10 MB
         backupCount=5,
     )
     file_handler.setFormatter(formatter)
     app_logger.addHandler(file_handler)
+except Exception as e:
+    app_logger.error(f"Failed to set up file logging: {e}")
 
-# Set log level from environment variable if provided
+# Set log level from environment
 log_level = os.getenv("LOG_LEVEL", "INFO").upper()
 if log_level in ("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"):
     app_logger.setLevel(getattr(logging, log_level))
 
-# Helper function to create a logger for a specific module
-def get_logger(name: str, level: Optional[str] = None) -> logging.Logger:
-    """Create a logger for a specific module.
+def get_logger(name: str) -> logging.Logger:
+    """Get a logger for a specific module"""
+    logger = logging.getLogger(f"app.{name}")
+    logger.setLevel(app_logger.level)
     
-    Args:
-        name: The name of the module (typically __name__)
-        level: Optional log level override
-        
-    Returns:
-        A configured logger instance
-    """
-    logger = logging.getLogger(name)
-    
-    # Set level from parameter or environment
-    if level and level.upper() in ("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"):
-        logger.setLevel(getattr(logging, level.upper()))
-    else:
-        logger.setLevel(app_logger.level)
-    
-    # Add handlers if not already present
     if not logger.handlers:
-        # Add console handler
         logger.addHandler(console_handler)
-        
-        # Add file handler if available
-        if log_file and 'file_handler' in locals():
+        if 'file_handler' in locals():
             logger.addHandler(file_handler)
     
     return logger
 
-# Helper function to log structured data
 def log_structured(logger: logging.Logger, level: str, message: str, data: Dict[str, Any]) -> None:
-    """Log a message with structured data.
-    
-    Args:
-        logger: The logger instance
-        level: The log level (debug, info, warning, error, critical)
-        message: The log message
-        data: Dictionary of structured data to include
-    """
-    if level.lower() == "debug":
-        logger.debug(f"{message} - {data}")
-    elif level.lower() == "info":
-        logger.info(f"{message} - {data}")
-    elif level.lower() == "warning":
-        logger.warning(f"{message} - {data}")
-    elif level.lower() == "error":
-        logger.error(f"{message} - {data}")
-    elif level.lower() == "critical":
-        logger.critical(f"{message} - {data}")
+    """Log a message with structured data"""
+    try:
+        log_method = getattr(logger, level.lower(), logger.info)
+        log_method(f"{message} - {data}")
+    except Exception as e:
+        logger.error(f"Error in log_structured: {e}")
 
-# CRITICAL: Always explicitly define __all__ at the end of the module as well
-# This ensures it's not forgotten during module updates
+# Export all logging components
 __all__ = ["app_logger", "get_logger", "log_structured"]
