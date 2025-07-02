@@ -1,0 +1,90 @@
+2025-07-01 02:26:45 - app - INFO - CORS middleware enabled for origins: http://localhost:8000,http://localhost:3000
+2025-07-01 02:26:45 - app - INFO - GZip middleware enabled.
+2025-07-01 02:26:45 - app - INFO - Session middleware disabled as authentication is not enabled.
+2025-07-01 02:26:45 - app - INFO - Request timing middleware enabled.
+2025-07-01 02:26:45 - app - INFO - Added router from router.api_router
+2025-07-01 02:26:45 - app - INFO - Added router from router.health_router
+2025-07-01 02:26:45 - app - INFO - Set up 2 routers with prefix '/api'
+2025-07-01 02:26:45 - app - INFO - Database is disabled by configuration.
+2025-07-01 02:26:45 - app - INFO - Starting server at 0.0.0.0:8000
+2025-07-01 02:26:45 - app - CRITICAL - Error starting application: Config.__init__() got multiple values for argument 'app'
+2025-07-01 02:26:45 - app - CRITICAL - Traceback (most recent call last):
+  File "C:\Users\kisho\Desktop\HSTAIEngineer\Server\ProjectBase\main.py", line 69, in <module>
+    ui.run(
+  File "C:\Users\kisho\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\nicegui\ui_run.py", line 150, in run
+    config = CustomServerConfig(
+             ^^^^^^^^^^^^^^^^^^^
+TypeError: Config.__init__() got multiple values for argument 'app'
+
+2025-07-01 02:38:47 - app - INFO - CORS middleware enabled for origins: http://localhost:8000,http://localhost:3000
+2025-07-01 02:38:47 - app - INFO - GZip middleware enabled.
+2025-07-01 02:38:47 - app - INFO - Session middleware disabled as authentication is not enabled.
+2025-07-01 02:38:47 - app - INFO - Request timing middleware enabled.
+2025-07-01 02:38:47 - app - INFO - Added router from router.api_router
+2025-07-01 02:38:47 - app - INFO - Added router from router.health_router
+2025-07-01 02:38:47 - app - INFO - Set up 2 routers with prefix '/api'
+2025-07-01 02:38:47 - app - INFO - Database is disabled by configuration.
+2025-07-01 02:38:47 - app - INFO - Starting server at 0.0.0.0:8000
+2025-07-01 02:38:47 - app - CRITICAL - Error starting application: Config.__init__() got multiple values for argument 'app'
+2025-07-01 02:38:47 - app - CRITICAL - Traceback (most recent call last):
+  File "C:\Users\kisho\Desktop\HSTAIEngineer\Server\ProjectBase\main.py", line 69, in <module>
+    ui.run(
+  File "C:\Users\kisho\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\nicegui\ui_run.py", line 150, in run
+    config = CustomServerConfig(
+             ^^^^^^^^^^^^^^^^^^^
+TypeError: Config.__init__() got multiple values for argument 'app'
+
+2025-07-01 02:43:37 - app - INFO - CORS middleware enabled for origins: http://localhost:8000,http://localhost:3000
+2025-07-01 02:43:37 - app - INFO - GZip middleware enabled.
+2025-07-01 02:43:37 - app - INFO - Session middleware disabled as authentication is not enabled.
+2025-07-01 02:43:37 - app - INFO - Request timing middleware enabled.
+2025-07-01 02:43:37 - app - INFO - Added router from router.api_router
+2025-07-01 02:43:37 - app - INFO - Added router from router.health_router
+2025-07-01 02:43:37 - app - INFO - Set up 2 routers with prefix '/api'
+2025-07-01 02:43:37 - app - INFO - Database is disabled by configuration.
+2025-07-01 02:43:37 - app - INFO - Starting server at 0.0.0.0:8000
+2025-07-01 02:43:37 - app - CRITICAL - Error starting application: Config.__init__() got an unexpected keyword argument 'fastapi_app'
+2025-07-01 02:43:37 - app - CRITICAL - Traceback (most recent call last):
+  File "C:\Users\kisho\Desktop\HSTAIEngineer\Server\ProjectBase\main.py", line 69, in <module>
+    ui.run(
+  File "C:\Users\kisho\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\nicegui\ui_run.py", line 150, in run
+    config = CustomServerConfig(
+             ^^^^^^^^^^^^^^^^^^^
+TypeError: Config.__init__() got an unexpected keyword argument 'fastapi_app'
+
+2025-07-01 02:50:42 - app - INFO - CORS middleware enabled for origins: http://localhost:8000,http://localhost:3000
+2025-07-01 02:50:42 - app - INFO - GZip middleware enabled.
+2025-07-01 02:50:42 - app - INFO - Session middleware disabled as authentication is not enabled.
+2025-07-01 02:50:42 - app - INFO - Request timing middleware enabled.
+2025-07-01 02:50:42 - app - INFO - Added router from router.api_router
+2025-07-01 02:50:42 - app - INFO - Added router from router.health_router
+2025-07-01 02:50:42 - app - INFO - Set up 2 routers with prefix '/api'
+2025-07-01 02:50:42 - app - INFO - Database is disabled by configuration.
+2025-07-01 02:50:42 - app - INFO - Setting up NiceGUI integration...
+2025-07-01 02:50:42 - app - INFO - NiceGUI mounted at /
+2025-07-01 02:50:42 - app - INFO - NiceGUI setup complete.
+2025-07-01 02:50:42 - app - INFO - Starting server at 0.0.0.0:8000
+2025-07-01 02:50:47 - app - INFO - CORS middleware enabled for origins: http://localhost:8000,http://localhost:3000
+2025-07-01 02:50:47 - app - INFO - GZip middleware enabled.
+2025-07-01 02:50:47 - app - INFO - Session middleware disabled as authentication is not enabled.
+2025-07-01 02:50:47 - app - INFO - Request timing middleware enabled.
+2025-07-01 02:50:47 - app - INFO - Added router from router.api_router
+2025-07-01 02:50:47 - app - INFO - Added router from router.health_router
+2025-07-01 02:50:47 - app - INFO - Set up 2 routers with prefix '/api'
+2025-07-01 02:50:47 - app - INFO - Database is disabled by configuration.
+2025-07-01 02:50:47 - app - INFO - Setting up NiceGUI integration...
+2025-07-01 02:50:47 - app - INFO - NiceGUI mounted at /
+2025-07-01 02:50:47 - app - INFO - NiceGUI setup complete.
+2025-07-01 02:50:47 - app - INFO - Starting server at 0.0.0.0:8000
+2025-07-01 11:11:20 - app - INFO - CORS middleware enabled for origins: http://localhost:8000,http://localhost:3000
+2025-07-01 11:11:20 - app - INFO - GZip middleware enabled.
+2025-07-01 11:11:20 - app - INFO - Session middleware disabled as authentication is not enabled.
+2025-07-01 11:11:20 - app - INFO - Request timing middleware enabled.
+2025-07-01 11:11:20 - app - INFO - Added router from router.api_router
+2025-07-01 11:11:20 - app - INFO - Added router from router.health_router
+2025-07-01 11:11:20 - app - INFO - Set up 2 routers with prefix '/api'
+2025-07-01 11:11:20 - app - INFO - Database is disabled by configuration.
+2025-07-01 11:11:20 - app - INFO - Setting up NiceGUI integration...
+2025-07-01 11:11:20 - app - INFO - NiceGUI mounted at /
+2025-07-01 11:11:20 - app - INFO - NiceGUI setup complete.
+2025-07-01 11:11:20 - app - INFO - Starting server at 0.0.0.0:8000

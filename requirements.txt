@@ -1,0 +1,51 @@
+# Core dependencies
+# NiceGUI 1.4.21-1.4.24 requires FastAPI <0.110.0, >=0.109.1
+fastapi>=0.109.1,<0.110.0
+nicegui>=1.4.21,<1.5.0
+uvicorn[standard]>=0.30.0,<0.31.0
+pydantic>=2.8.0,<2.10.0
+pydantic-settings>=2.4.0,<2.6.0
+python-dotenv>=1.0.1,<1.1.0
+reactpy>=1.0.2,<1.1.0
+# reactpy-fastapi>=0.6.0,<0.7.0
+
+# Security
+python-jose>=3.3.0
+passlib>=1.7.4
+bcrypt>=4.0.1
+python-multipart>=0.0.6  # For OAuth2 form handling
+
+# API and HTTP
+requests>=2.31.0
+httpx>=0.25.0  # For async HTTP requests
+
+# Utilities
+psutil>=5.9.6  # For system monitoring
+email-validator>=2.1.0  # For email validation
+python-slugify>=8.0.1  # For generating slugs
+tenacity>=8.2.3  # For retrying operations
+
+# Middleware
+starlette-context>=0.3.6  # For request context
+
+# Logging enhancements
+# pythonjsonlogger>=2.0.7  # For JSON logging
+
+# Database (uncomment as needed)
+# sqlalchemy>=2.0.22
+# alembic>=1.12.0
+# pymysql>=1.1.0
+# psycopg2-binary>=2.9.9
+# motor>=3.3.1
+# beanie>=1.23.0
+# redis>=4.6.0  # For caching/session storage
+
+# Testing
+pytest>=7.4.2
+pytest-asyncio>=0.21.1
+
+# Development tools (uncomment as needed)
+# black>=23.10.0  # Code formatting
+# isort>=5.12.0  # Import sorting
+# flake8>=6.1.0  # Linting
+# mypy>=1.6.1  # Type checking
